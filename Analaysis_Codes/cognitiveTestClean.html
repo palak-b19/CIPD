@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Clean Memory Test</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
+      margin: 0;
+      padding: 40px;
+      text-align: center;
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    #content, #question {
+      background-color: #ffffff;
+      border-radius: 12px;
+      padding: 40px;
+      max-width: 500px;
+      margin: 100px auto;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #00bcd4;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0097a7;
+    }
+
+    #result {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+
+    /* Subtle corner number */
+    #code {
+      position: fixed;
+      bottom: 8px;
+      left: 10px;
+      font-size: 18px;
+      color: #555;
+      background-color: rgba(255, 255, 255, 0.6);
+      padding: 4px 6px;
+      border-radius: 5px;
+    }
+
+    /* Decorative visuals */
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background-color: rgba(0, 188, 212, 0.1);
+      animation: float 8s infinite ease-in-out;
+    }
+
+    .circle.one {
+      width: 100px; height: 100px; top: 40px; left: 40px;
+    }
+
+    .circle.two {
+      width: 80px; height: 80px; top: 300px; right: 60px;
+      animation-delay: 2s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Decorative visuals -->
+  <div class="circle one"></div>
+  <div class="circle two"></div>
+
+  <!-- Small corner number -->
+  <div id="code">7281</div>
+
+  <!-- Main content -->
+  <div id="content">
+    <p>Please remember the number shown somewhere on this page.</p>
+    <p><em>(It will disappear in 10 seconds!)</em></p>
+  </div>
+
+  <div id="question" style="display:none;">
+    <p>What was the number?</p>
+    <input type="text" id="answer" />
+    <br>
+    <button onclick="check()">Submit</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    setTimeout(() => {
+      document.getElementById("code").style.display = "none";
+      document.getElementById("content").style.display = "none";
+      document.getElementById("question").style.display = "block";
+    }, 10000); // 10 seconds
+
+    function check() {
+      const ans = document.getElementById("answer").value.trim();
+      const correct = "7281";
+      document.getElementById("result").innerText = ans === correct
+        ? "Correct!"
+        : `Wrong. It was ${correct}`;
+    }
+  </script>
+</body>
+</html>
+<script>
+let correctAnswer = "7281";
+
+setTimeout(() => {
+    document.getElementById("code").style.display = "none";
+    document.getElementById("content").style.display = "none";
+    document.getElementById("question").style.display = "block";
+}, 10000); // 10 seconds to memorize
+
+function check() {
+    const userAnswer = document.getElementById("answer").value.trim();
+    const isCorrect = userAnswer === correctAnswer;
+    
+    // Send data to server
+    fetch('http://localhost:3000/api/log', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+        testType: 'busy',  // or 'clean'
+        correct: isCorrect
+    })
+    });
+
+    document.getElementById("result").innerText = isCorrect
+    ? "Correct!" : `Wrong. It was ${correctAnswer}`;
+}
+</script>
