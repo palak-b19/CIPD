@@ -11,8 +11,6 @@
 
 (function() {
     'use strict';
-
-    // Inject heatmap style
     let style = document.createElement('style');
     style.innerHTML = `
         .heatmap {
@@ -28,7 +26,6 @@
     `;
     document.head.appendChild(style);
 
-    // Track clicks and create heatmap points
     document.addEventListener("click", function(event) {
         let dot = document.createElement("div");
         dot.className = "heatmap";
