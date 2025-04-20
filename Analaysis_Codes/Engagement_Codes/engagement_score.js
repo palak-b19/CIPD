@@ -10,7 +10,7 @@
 (function() {
     'use strict';
 
-    // Create the floating engagement meter
+    
     let meter = document.createElement("div");
     meter.id = "engagementMeter";
     meter.style.position = "fixed";
@@ -28,7 +28,6 @@
     meter.innerHTML = "Engagement Score: <span id='engagementScore'>0</span>";
     document.body.appendChild(meter);
 
-    // Variables to track engagement
     let hoverTime = 0;
     let clickCount = 0;
     let idleTime = 0;
@@ -37,7 +36,6 @@
     let engagementScore = 0;
     let lastInteraction = Date.now();
 
-    // Track hover duration on interactive elements
     let interactiveElements = document.querySelectorAll("a, button, [data-personalized], img, [role='button']");
     interactiveElements.forEach(element => {
         let hoverStart = 0;
@@ -46,13 +44,12 @@
         });
         element.addEventListener("mouseleave", () => {
             if (hoverStart) {
-                hoverTime += (Date.now() - hoverStart) / 1000; // Time in seconds
+                hoverTime += (Date.now() - hoverStart) / 1000; 
                 hoverStart = 0;
             }
         });
     });
 
-    // Track clicks, especially on dynamic or personalized elements
     document.addEventListener("click", (event) => {
         clickCount++;
         lastInteraction = Date.now();
@@ -61,33 +58,32 @@
         }
     });
 
-    // Track idle time (no scrolling or interaction)
     let lastScroll = Date.now();
     window.addEventListener("scroll", () => {
         lastScroll = Date.now();
         lastInteraction = Date.now();
     });
 
-    // Update the meter every 2 seconds
+    
     function updateMeter() {
         let now = Date.now();
-        let timeDiff = (now - lastUpdate) / 1000; // Time in seconds
+        let timeDiff = (now - lastUpdate) / 1000; 
         lastUpdate = now;
 
-        // Check idle time (no scroll or interaction)
+        
         let timeSinceInteraction = (now - lastInteraction) / 1000;
         if (timeSinceInteraction < 5 && now - lastScroll < 5000) {
-            idleTime += timeDiff; // Count as engaged if recent interaction or scroll
+            idleTime += timeDiff; 
         }
 
-        // Calculate engagement score (heuristic)
-        let hoverFactor = Math.min(hoverTime / 10, 1) * 30; // Max 30 points for long hovers
-        let clickFactor = Math.min(clickCount / (timeDiff * 3), 1) * 20; // Max 20 points for frequent clicks
-        let idleFactor = Math.min(idleTime / 30, 1) * 30; // Max 30 points for sustained presence
-        let personalizedFactor = Math.min(personalizedClicks / (timeDiff * 2), 1) * 20; // Max 20 points for personalized interactions
+        
+        let hoverFactor = Math.min(hoverTime / 10, 1) * 30; 
+        let clickFactor = Math.min(clickCount / (timeDiff * 3), 1) * 20;
+        let idleFactor = Math.min(idleTime / 30, 1) * 30; 
+        let personalizedFactor = Math.min(personalizedClicks / (timeDiff * 2), 1) * 20; 
         engagementScore = Math.round(hoverFactor + clickFactor + idleFactor + personalizedFactor);
 
-        // Update meter text and color
+
         let scoreElement = document.getElementById("engagementScore");
         scoreElement.textContent = engagementScore;
 
@@ -99,20 +95,20 @@
             meter.style.background = "orange";
         }
 
-        // Reset counters
+        
         hoverTime = 0;
         clickCount = 0;
         idleTime = 0;
         personalizedClicks = 0;
     }
 
-    // Update the meter every 2 seconds
+    
     setInterval(updateMeter, 2000);
 
-    // Ensure meter is added after DOM is loaded
+   
     document.addEventListener("DOMContentLoaded", () => {
         document.body.appendChild(meter);
-        // Re-query interactive elements in case DOM changes
+        
         interactiveElements = document.querySelectorAll("a, button, [data-personalized], img, [role='button']");
     });
 })();
