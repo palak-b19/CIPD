@@ -5,7 +5,7 @@ A comprehensive collection of tools, experiments, and machine learning models de
 
 ---
 
-## 📖 Overview
+## Overview
 
 This repository focuses on evaluating how interface elements such as flashing banners, animated components, and label density affect users' memory recall and decision-making processes. It includes:
 
@@ -16,7 +16,7 @@ This repository focuses on evaluating how interface elements such as flashing ba
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 The repository is organized into three main directories, each containing specific components of the analysis pipeline:
 
@@ -59,7 +59,7 @@ The repository is organized into three main directories, each containing specifi
 
 ---
 
-## 🌟 Key Features
+## Key Features
 
 - **Cognitive Tests**: Compare memory recall in clean vs. chaotic interfaces to quantify distraction effects.
 - **Interaction Tracking**: Monitor clicks, scroll depth, decision confidence, and engagement in real-time using JavaScript-based tools.
@@ -69,7 +69,7 @@ The repository is organized into three main directories, each containing specifi
 
 ---
 
-## 🚀 Usage
+## Usage
 
 ### 1. Running Cognitive Tests
 - Open `cognitiveTestBusy.html` or `cognitiveTestClean.html` in a browser to participate in the memory test.
@@ -108,7 +108,7 @@ The repository is organized into three main directories, each containing specifi
 
 ---
 
-## 📊 Data Description
+## Data Description
 
 ### Click Data
 - Files: `clicks_unstop.com.json`, `Dataset2.json`, `User_Dataset1.json`
@@ -122,7 +122,7 @@ The repository is organized into three main directories, each containing specifi
 
 ---
 
-## 📈 Results
+## Results
 
 - **Cognitive Tests**: 
   - Clean UI (`cognitiveTestClean.html`): 73% recall rate
@@ -142,49 +142,4 @@ The repository is organized into three main directories, each containing specifi
   - RandomForestClassifier predicts memory recall with 80% accuracy
   - Source: `cogntiveloadmlmodel.ipynb`
 
----
-
-## ⚠️ Limitations
-
-- **Local Server Dependency**: Cognitive tests require a server at `http://localhost:3000/api/log` for logging.
-- **Dataset Size**: `memory_distraction_data.csv` has only 25 entries, limiting model generalization.
-- **Static Data**: Click data is limited to `unstop.com` and `duolingo.com`.
-- **Browser Compatibility**: Tampermonkey scripts may vary in behavior across browsers due to DOM differences.
-
----
-
-## 🔮 Future Work
-
-- Expand `memory_distraction_data.csv` with more websites and user tests.
-- Implement a backend server for cognitive test logging.
-- Enhance ML models with features like scroll depth and session duration.
-- Develop real-time heatmap visualization integrated with `Global Heatmap Click Tracker`.
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! To contribute:
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Submit a pull request with a clear description of your changes.
-
-Suggestions for improvement include:
-- Enhancing cognitive tests
-- Adding new datasets
-- Improving ML model performance
-
----
-
-## 📜 License
-
-This project is licensed under the **MIT License**. See the `LICENSE` file for details (not currently included; consider adding one).
-
----
-
-## 📬 Contact
-
-For questions or feedback, please open an issue in the repository or contact the maintainers.
-
-Happy analyzing! 🚀
 
