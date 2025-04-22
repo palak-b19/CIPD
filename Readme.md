@@ -89,7 +89,7 @@ The repository is organized into three main directories, each containing specifi
 
 ---
 
-## 🛠️ Dependencies
+##  Dependencies
 
 ### Python
 - Required libraries: `pandas`, `numpy`, `matplotlib`, `scikit-learn`, `seaborn`
