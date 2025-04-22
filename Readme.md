@@ -1,6 +1,6 @@
 
 # Cognitive and Interaction Analysis Repository
-The project repository for the course Cognition and Information Processing in Design ( CIPD DES523).We came up with a collection of tools, experiments, and machine learning models designed to study how website interface complexity impacts user cognitive load, memory recall, and interaction patterns. This project explores the effects of distractions (e.g., flashing elements, animations) on user performance and provides insights into optimizing user experience through data-driven analysis.
+The project repository for the course `Cognition and Information Processing in Design ( CIPD DES523)`. We came up with a collection of tools, experiments, and machine learning models  to study how experience design elements impact user cognitive load, memory recall, user engagement, decision pattern and interaction patterns. We also explored the effects of distractions (e.g., flashing elements, animations) on user performance.
 
 ---
 
